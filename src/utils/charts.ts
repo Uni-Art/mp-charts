@@ -30,7 +30,7 @@ export const createConfirmedRateChart = (data: GraphData[]) => {
         .scale('x', { utc: true })
         .scale('y', { nice: true })
         .scale('color', { palette: 'turbo' })
-        .encode('x', (d) => new Date(d.date))
+        .encode('x', (d:GraphData) => new Date(d.date))
         .encode('y', 'confirmedRate')
         .encode('shape', 'hvh')
         .encode('color', 'confirmedRate')

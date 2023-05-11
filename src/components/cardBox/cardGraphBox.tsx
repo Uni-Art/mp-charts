@@ -3,9 +3,9 @@ import {Card} from "antd";
 import styles from "./cardBox.module.scss"
 
 interface CardGraphBoxProps {
-    title: string;
-    buttons: ReactNode | ReactNode[];
+    buttons: ReactNode[];
     graphIdContainer: string;
+    title: string;
 }
 
 function CardGraphBox({title, buttons, graphIdContainer}:CardGraphBoxProps) {

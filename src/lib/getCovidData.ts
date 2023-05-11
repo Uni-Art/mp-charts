@@ -1,6 +1,11 @@
-export const getCovidData = async (date: string, range: number): Promise<GraphData[]> => {
+export const getCovidData = async (date: string, range: number): Promise<GraphData[] | undefined> => {
     try {
         const response = await fetch('https://api.coronavirus.data.gov.uk/v1/data');
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch COVID data');
+        }
+
         const data = await response.json();
         const allCases: GraphData[] = data.data;
 
@@ -15,6 +20,7 @@ export const getCovidData = async (date: string, range: number): Promise<GraphDa
 
         return filteredCases;
     } catch (error) {
-        console.error('Error occurred during the request getCovidData', error);
+        console.error('Error fetching COVID data:', error);
+        return undefined;
     }
 }

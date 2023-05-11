@@ -1,6 +1,6 @@
 "use client";
 import "antd/dist/reset.css";
-import "@/global.scss";
+import "../global.scss";
 
 import React from "react";
 import Container from "@/components/container/container";

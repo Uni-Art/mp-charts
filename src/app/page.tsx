@@ -4,25 +4,36 @@ import {useEffect, useState} from "react";
 import {Avatar, Space, Row, Col} from "antd";
 import {getCovidData} from "@/lib/getCovidData";
 import {createConfirmedCasesChart, createConfirmedRateChart} from "@/utils/charts";
-import NavigationMenu from "@/components/navigation/NavigationMenu";
+import NavigationMenu from "@/components/navigation/navigationMenu";
 import CardGraphBox from "@/components/cardBox/cardGraphBox";
 import BtnAddComment from "@/components/buttons/btnAddComment";
 
 export default function Home() {
-    const [graphData, setGraphData] = useState<GraphData[]>([]);
+    const [graphData, setGraphData] = useState<GraphData[] | undefined>([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const data: GraphData[] = await getCovidData("2022-05-20", 7);
-            setGraphData(data);
-        };
+        let isCanceled = false;
 
-        fetchData();
+        getCovidData('2022-05-20', 7)
+            .then((data: GraphData[] | undefined) => {
+                if(!isCanceled) {
+                    setGraphData(data);
+                }
+            })
+            .catch((error: Error) => {
+                console.error('Error fetching COVID data:', error);
+            });
+
+        return () => {
+            isCanceled = true;
+        }
     }, []);
 
     useEffect(() => {
-        createConfirmedCasesChart(graphData);
-        createConfirmedRateChart(graphData);
+        if (graphData) {
+            createConfirmedCasesChart(graphData);
+            createConfirmedRateChart(graphData);
+        }
     }, [graphData]);
 
     return (
@@ -33,8 +44,8 @@ export default function Home() {
                     <CardGraphBox
                         title="New confirmed cases"
                         buttons={[
-                            <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel"/>,
-                            <BtnAddComment/>
+                            <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" key="avtrConfirmedCasesChart"/>,
+                            <BtnAddComment key="commentConfirmedCasesChart"/>
                         ]}
                         graphIdContainer="confirmedCasesChart"
                     />
@@ -43,8 +54,8 @@ export default function Home() {
                     <CardGraphBox
                         title="Confirm rate"
                         buttons={[
-                            <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel"/>,
-                            <BtnAddComment/>
+                            <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" key="avtrConfirmedRateChart"/>,
+                            <BtnAddComment key="commentConfirmedRateChart"/>
                         ]}
                         graphIdContainer="confirmedRateChart"
                     />
