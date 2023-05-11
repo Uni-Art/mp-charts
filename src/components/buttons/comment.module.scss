@@ -1,0 +1,25 @@
+.btn {
+  display: flex;
+  padding: 0;
+
+  &:not(:disabled):hover {
+    background: none;
+
+    svg {
+      fill: var(--primary-color);
+    }
+  }
+}
+
+.count {
+  color: var(--text-light);
+}
+
+.icon {
+  font-size: 24px;
+  margin-left: 5px;
+
+  svg {
+    fill: var(--text-light);
+  }
+}

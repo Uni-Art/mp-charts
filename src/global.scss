@@ -1,0 +1,87 @@
+:root {
+  --white: #ffffff;
+  --highlight: #243853;
+  --primary-color: #369b8c;
+  --secondary-color: #6BCAB0;
+  --link-hover-color: #9C77F2;
+  --border-color: #EDEFEF;
+  --primary-background-color: #F5F5F5;
+  --box-shadow: #E6EBEB;
+  --text-light: #cccccc;
+  --scrollbar-track: #f1f1f1;
+  --scrollbar-thumb: #888888;
+  --scrollbar-thumb-hover: #555555;
+}
+
+body {
+  background-color: var(--primary-background-color);
+}
+
+a {
+  &:hover {
+    color: var(--link-hover-color);
+  }
+}
+
+.container {
+  width: 100%;
+
+  @media screen and (min-width: 576px) {
+    width: 540px;
+    margin: auto;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 720px;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 960px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 1140px;
+  }
+}
+
+.appHeader {
+  background-color: var(--white);
+  box-shadow: 3px 6px var(--box-shadow);
+  margin-bottom: 30px;
+
+  &__link {
+    color: var(--highlight);
+  }
+}
+
+.ant-card .ant-card-actions > li {
+  padding: 0 24px;
+  text-align: right;
+  & > span {
+    display: inline-block;
+  }
+
+  &:not(:last-child) {
+    text-align: left;
+    border: none;
+  }
+}
+
+.ant-card-body {
+  &::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+}

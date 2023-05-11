@@ -12,7 +12,6 @@ export const getCovidData = async (date: string, range: number): Promise<GraphDa
             dateRange.setDate(currentDate.getDate() - range);
             return itemDate >= dateRange && itemDate <= currentDate;
         });
-        console.log('filteredCases', filteredCases);
 
         return filteredCases;
     } catch (error) {

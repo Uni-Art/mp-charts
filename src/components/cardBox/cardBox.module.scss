@@ -1,0 +1,13 @@
+.cardBox {
+  margin-bottom: 30px;
+
+  .ant-card .ant-card-actions > li {
+    & > span {
+      display: inline-block;
+    }
+
+    &:not(:last-child) {
+      border: none;
+    }
+  }
+}
