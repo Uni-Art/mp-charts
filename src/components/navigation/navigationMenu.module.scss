@@ -1,0 +1,27 @@
+.icon svg{
+  fill: var(--primary-color)
+}
+
+.title {
+  font-size: 16px;
+  color: #243853;
+}
+
+.menu {
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.textLabel {
+  color: var(--text-light);
+  margin-left: 5px;
+}
+
+.circleLabel {
+  color: var(--white);
+  background-color: var(--primary-color);
+  border-radius: 100%;
+  font-size: 10px;
+  padding: 0 1px;
+  margin-left: 5px;
+}
